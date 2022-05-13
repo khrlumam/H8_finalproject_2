@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/icomoon_style.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <title>Project 2</title>
+  </head>
+  <body>
+  
+
+    <div class="content">
+      
+      <div class="container">
+
+        
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+            
+            <div class="row align-items-center">
+              <div class="col-lg-7 mb-5 mb-lg-0">
+
+                <h2 class="mb-5">Predict Next Day Rain <br> in Australia.</h2>
+                <!-- <button class="sim-btn hvr-bounce-to-top" onclick="FormLyft()">Lyft</button>
+                <button class="sim-btn hvr-bounce-to-top" onclick="FormUber()">Uber</button> -->
+                <div class="col-5 button-group filter-button-group text-center">
+                  <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                    aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+                      role="tab" aria-controls="v-pills-home" aria-selected="true">
+                      <img src="https://static.thenounproject.com/png/1742170-200.png"
+                        alt="linear_regression_icon" width="20px"> Logistic Regression </a>
+                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+                      role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                      <img src="https://static.thenounproject.com/png/1503831-200.png"
+                        alt="linear_regression_icon" width="20px"> Support Vector Machine</a>
+                  </div>
+                </div>
+                <!-- Logistic Regression Prediction -->
+                <div class="tab-content" id="v-pills-tabContent">
+                  <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                    aria-labelledby="v-pills-home-tab">
+                    <form action="{{ url_for('predict_1')}}" class="border-right pr-5 mb-5" method="post" id="contactForm_lyft">
+                        <div class="col-md-7 form-group">
+                          <label for="rainfall">Rain Fall</label>
+                          <input type="number" name="rainfall" class="form-control" id="rainfall"
+                            placeholder="Dalam Satuan mm"
+                            required="required">
+                        </div>
+                    
+                      
+                        <div class="col-md-7 form-group">
+                          <label for="WindGustSpeed">Wind Gust Speed</label>
+                          <input type="number" name="WindGustSpeed" class="form-control" id="WindGustSpeed"
+                            placeholder="Dalam Satuan km/jam"
+                            required="required">
+                        </div>
+                      
+
+                        <div class="col-md-7 form-group">
+                          <label for="Humidity9am">Humidity 9 AM</label>
+                          <input type="number" name="Humidity9am" class="form-control" id="Humidity9am"
+                            placeholder="Dalam Satuan %"
+                            required="required">
+                        </div>
+
+                        <div class="col-md-7 form-group">
+                          <label for="Humidity3pm">Humidity 3 PM</label>
+                          <input type="number" name="Humidity3pm" class="form-control" id="Humidity3pm"
+                            placeholder="Dalam Satuan %"
+                            required="required">
+                        </div>
+
+                        <div class="col-md-7 form-group">
+                          <label for="Cloud9am">Cloud 9 AM</label>
+                          <input type="number" name="Cloud9am" class="form-control" id="Cloud9am"
+                            placeholder="Dalam Satuan %"
+                            required="required">
+                        </div>
+
+                        <div class="col-md-7 form-group">
+                          <label for="Cloud3pm">Cloud 3 PM</label>
+                          <input type="number" name="Cloud3pm" class="form-control" id="Cloud3pm"
+                            placeholder="Dalam Satuan %"
+                            required="required">
+                        </div>
+                      
+
+                      
+                        <div class="col-md-8 form-group">
+                          <label for="RainToday">Rain Today</label>
+                          <select class="form-control" id="RainToday" name="RainToday"
+                            required="required">
+                            <option>Pilih</option>
+                            <option value="0">Tidak</option>
+                            <option value="1">Iya</option>
+                          </select>
+                        </div>
+                      <button type="submit" class="btn btn-primary rounded-0 py-2 px-4">Predict</button>
+                    </form>
+                    <p class="message">{{ prediction_text_1 }}</p>
+                  </div>
+                
+                  <!-- Support Vector Machine Prediction -->
+                  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" 
+                    aria-labelledby="v-pills-profile-tab">
+                    <form action="{{ url_for('predict_2')}}" class="border-right pr-5 mb-5" method="post" id="contactForm_uber">
+                        <div class="col-md-7 form-group">
+                          <label for="rainfall">Rain Fall</label>
+                          <input type="number" name="rainfall" class="form-control" id="rainfall"
+                            placeholder="Dalam Satuan mm"
+                            required="required">
+                        </div>
+                    
+                      
+                        <div class="col-md-7 form-group">
+                          <label for="WindGustSpeed">Wind Gust Speed</label>
+                          <input type="number" name="WindGustSpeed" class="form-control" id="WindGustSpeed"
+                            placeholder="Dalam Satuan km/jam"
+                            required="required">
+                        </div>
+                      
+
+                        <div class="col-md-7 form-group">
+                          <label for="Humidity9am">Humidity 9 AM</label>
+                          <input type="number" name="Humidity9am" class="form-control" id="Humidity9am"
+                            placeholder="Dalam Satuan %"
+                            required="required">
+                        </div>
+
+                        <div class="col-md-7 form-group">
+                          <label for="Humidity3pm">Humidity 3 PM</label>
+                          <input type="number" name="Humidity3pm" class="form-control" id="Humidity3pm"
+                            placeholder="Dalam Satuan %"
+                            required="required">
+                        </div>
+
+                        <div class="col-md-7 form-group">
+                          <label for="Cloud9am">Cloud 9 AM</label>
+                          <input type="number" name="Cloud9am" class="form-control" id="Cloud9am"
+                            placeholder="Dalam Satuan %"
+                            required="required">
+                        </div>
+
+                        <div class="col-md-7 form-group">
+                          <label for="Cloud3pm">Cloud 3 PM</label>
+                          <input type="number" name="Cloud3pm" class="form-control" id="Cloud3pm"
+                            placeholder="Dalam Satuan %"
+                            required="required">
+                        </div>
+                      
+
+                      
+                        <div class="col-md-8 form-group">
+                          <label for="RainToday">Rain Today</label>
+                          <select class="form-control" id="RainToday" name="RainToday"
+                            required="required">
+                            <option>Pilih</option>
+                            <option value="0">Tidak</option>
+                            <option value="1">Iya</option>
+                          </select>
+                        </div>
+                      <button type="submit" class="btn btn-primary rounded-0 py-2 px-4">Predict</button>
+                    </form>
+                    <p class="message">{{ prediction_text_2 }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 ml-auto">
+                <h3 class="mb-4">About Dataset  .</h3>
+                <p>This dataset contains about 10 years of daily weather observations from many locations across Australia.
+                  <br>RainTomorrow is the target variable to predict. It means did it rain the next day, Yes or No? This column is Yes if the rain for that day was 1mm or more.</p>
+                <p><a href="https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package" target="blank">Go to Site</a></p>
+                  <br>
+                <h3 class="mb-4">Nama Kelompok:</h3>
+                <p>Tyra Nabilla - PYTN-KS04-004
+                  <br>Khairul Umam - PYTN-KS04-006 </p>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+    
+    
+
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.validate.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
